@@ -44,14 +44,10 @@ public class SiaConsumer implements Runnable {
     }
 
     private void setup(int id, String groupId, List<String> topics) {
-      this.id = id;
-      this.topics = topics;
-      Properties props = new Properties();
-      props.put("bootstrap.servers", KafkaProperties.KAFKA_BOOTSTRAP);
-      props.put("group.id", groupId);
-      props.put("key.deserializer", KafkaProperties.KEY_DESERIALIZER);
-      props.put("value.deserializer", KafkaProperties.VALUE_DESERIALIZER);
-      this.consumer = new KafkaConsumer<>(props);
+        this.id = id;
+        this.topics = topics;
+        Properties prop = KafkaProperties.getClientConfiguration(KafkaProperties.getKafkaHost(), KafkaProperties.getApiKey(), false);
+        this.consumer = new KafkaConsumer<>(prop);
     }
 
 
