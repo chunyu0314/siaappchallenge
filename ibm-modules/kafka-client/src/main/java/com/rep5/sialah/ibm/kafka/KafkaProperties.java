@@ -27,7 +27,6 @@ class KafkaProperties {
     private static final long HOUR_IN_MILLISECONDS = 3600000L;
     private static final Logger logger = Logger.getLogger(KafkaProperties.class);
     private static String userDir, resourceDir;
-    private static boolean isDistribution;
     private static String kafkaHost = null;
     private static String restHost = null;
     private static String apiKey = null;
@@ -48,15 +47,8 @@ class KafkaProperties {
     private static void init() {
         userDir = System.getProperty("user.dir");
 
-        isDistribution = new File(userDir + File.separator + ".java-buildpack").exists();
-
-        if(isDistribution) {
-            logger.log(Level.INFO, "Running in distribution mode.");
-            resourceDir = userDir + File.separator + "message-hub-kafka-ssl-1.0" + File.separator + "bin" + File.separator + "resources";
-        } else {
-            logger.log(Level.INFO, "Running in local mode.");
-            resourceDir = userDir + File.separator + "src" + File.separator + "main" + File.separator + "resources";
-        }
+        logger.log(Level.INFO, "Running in local mode.");
+        resourceDir = userDir + File.separator + "src" + File.separator + "main" + File.separator + "resources";
 
         // Set JAAS configuration property.
         if(System.getProperty(JAAS_CONFIG_PROPERTY) == null) {
@@ -200,10 +192,6 @@ class KafkaProperties {
         props.put("ssl.truststore.location", "/usr/lib/jvm/oracle_jdk8/jre/lib/security/cacerts");
         //TODO cacert location of liberty -> /home/vcap/app/.java/jre/lib/security/cacerts
         props.put("ssl.truststore.password", "changeit");
-
-        if(isDistribution) {
-            props.put("ssl.truststore.location", userDir + "/.java-buildpack/open_jdk_jre/lib/security/cacerts");
-        }
 
         return props;
     }

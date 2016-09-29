@@ -1,5 +1,6 @@
 package com.rep5.sialah.ibm.kafka;
 
+import com.sun.jmx.remote.internal.ArrayQueue;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
@@ -9,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
 
@@ -48,20 +50,30 @@ public class SiaConsumer implements Runnable {
         this.topics = topics;
         Properties prop = KafkaProperties.getClientConfiguration(KafkaProperties.getKafkaHost(), KafkaProperties.getApiKey(), false);
         this.consumer = new KafkaConsumer<>(prop);
+        if (isPartitioned) {
+            consumer.assign(partition);
+        }
+        else {
+            consumer.subscribe(topics);
+        }
+        logger.info("Consumer subscribed");
+
+    }
+
+    public List<String> manualPoll() {
+
+        List<String> list = new ArrayList<>();
+        ConsumerRecords<String, String> records = consumer.poll(300L);
+        for (ConsumerRecord<String, String> record : records) {
+            list.add(record.value());
+        }
+        return list;
     }
 
 
     @Override
     public void run() {
         try {
-            if (isPartitioned) {
-                consumer.assign(partition);
-            }
-            else {
-                consumer.subscribe(topics);
-            }
-            logger.info("Consumer subscribed");
-
             while (true) {
                 ConsumerRecords<String, String> records = consumer.poll(300L);
                 for (ConsumerRecord<String, String> record : records) {
@@ -77,13 +89,11 @@ public class SiaConsumer implements Runnable {
             logger.info("wake up exception");
             // ignore for shutdown
         }
-        finally {
-            consumer.close();
-        }
     }
 
     public void shutdown() {
         consumer.wakeup();
+        consumer.close();
     }
 }
 
