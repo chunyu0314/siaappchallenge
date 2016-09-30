@@ -1,6 +1,6 @@
 package com.rep5.sialah.ibm.kafka.tests;
 
-import com.rep5.sialah.common.models.ClefMessage;
+import com.rep5.sialah.common.models.SiaMessage;
 import com.rep5.sialah.ibm.kafka.SiaConsumer;
 import com.rep5.sialah.ibm.kafka.SiaProducer;
 import com.rep5.sialah.ibm.kafka.ConsumerListener;
@@ -27,16 +27,14 @@ public class KafkaTest {
         List<String> topics = new ArrayList<>();
         SiaConsumer consumer;
         SiaProducer producer = new SiaProducer();
-        ClefMessage msg = new ClefMessage();
+        SiaMessage msg = new SiaMessage();
         //final String[] receiptString = new String[1];
 
         topics.add(topic);
         consumer = new SiaConsumer(1, "es-group", topics);
 
-        ConsumerListener listener = (data) -> {
-           msg.setInstance(data);
-            //receiptString[0] = data;
-        };
+        //receiptString[0] = data;
+        ConsumerListener listener = msg::setMessage;
 
         consumer.addListener(listener);
         Thread thread = new Thread(consumer);
@@ -57,6 +55,6 @@ public class KafkaTest {
 
         consumer.shutdown();
 
-        Assert.assertEquals(testString, msg.getInstance());
+        Assert.assertEquals(testString, msg.getMessage());
     }
 }

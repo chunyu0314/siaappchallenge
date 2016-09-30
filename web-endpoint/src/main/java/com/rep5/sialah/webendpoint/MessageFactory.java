@@ -1,21 +1,21 @@
 package com.rep5.sialah.webendpoint;
 
 import com.alibaba.fastjson.JSON;
-import com.clef.infra.commons.models.ClefQuery;
-import com.clef.infra.kafka.ClefProducer;
+import com.rep5.sialah.common.models.SiaMessage;
+import com.rep5.sialah.ibm.kafka.SiaProducer;
 
 /**
  * Created by low on 16/8/16 2:58 PM.
  */
 public class MessageFactory {
-    static private ClefProducer producer;
+    static private SiaProducer producer;
 
     public static void init() {
-        producer = new ClefProducer();
+        producer = new SiaProducer();
     }
 
-    public static void send(String queryType, ClefQuery query) {
+    public static void send(String topic, SiaMessage msg) {
         //TODO check for illegal query type
-        producer.write("clef-" + queryType, JSON.toJSONString(query));
+        producer.write(topic, JSON.toJSONString(msg));
     }
 }
