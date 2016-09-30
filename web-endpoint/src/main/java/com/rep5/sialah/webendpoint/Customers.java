@@ -1,25 +1,16 @@
-package com.clef.restapi;
+package com.rep5.sialah.webendpoint;
 
 import com.alibaba.fastjson.JSON;
 import com.clef.infra.commons.models.ClefMessage;
 import com.clef.infra.commons.models.RestPacket;
 import com.clef.infra.commons.models.Signup;
 import com.clef.infra.kafka.ClefProducer;
-import org.glassfish.jersey.media.sse.EventOutput;
-import org.glassfish.jersey.media.sse.OutboundEvent;
-import org.glassfish.jersey.media.sse.SseFeature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.ws.rs.*;
-import javax.ws.rs.container.AsyncResponse;
-import javax.ws.rs.container.Suspended;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 import static java.lang.Thread.sleep;
 

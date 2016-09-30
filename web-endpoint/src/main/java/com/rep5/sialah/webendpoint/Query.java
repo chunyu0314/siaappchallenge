@@ -1,4 +1,4 @@
-package com.clef.restapi;
+package com.rep5.sialah.webendpoint;
 
 import com.clef.infra.commons.models.ClefQuery;
 import com.clef.infra.commons.models.ResultResponse;

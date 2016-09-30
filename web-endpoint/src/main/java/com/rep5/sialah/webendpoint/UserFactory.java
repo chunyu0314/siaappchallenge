@@ -1,4 +1,4 @@
-package com.clef.restapi;
+package com.rep5.sialah.webendpoint;
 
 import com.clef.infra.commons.models.SignupRequest;
 import com.clef.infra.commons.services.UserDatabase;

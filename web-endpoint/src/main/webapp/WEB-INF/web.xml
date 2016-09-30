@@ -7,11 +7,11 @@
         <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
         <init-param>
             <param-name>jersey.config.server.provider.packages</param-name>
-            <param-value>com.clef.restapi</param-value>
+            <param-value>com.rep5.sialah.webendpoint</param-value>
         </init-param>
         <init-param>
             <param-name>com.sun.jersey.spi.container.ContainerRequestFilters</param-name>
-            <param-value>com.clef.restapi.AuthenticationFilter</param-value>
+            <param-value>com.rep5.sialah.webendpoint.AuthenticationFilter</param-value>
         </init-param>
         <init-param>
             <param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
@@ -26,6 +26,6 @@
     </servlet-mapping>
 
     <listener>
-        <listener-class>com.clef.restapi.ContextInit</listener-class>
+        <listener-class>com.rep5.sialah.webendpoint.ContextInit</listener-class>
     </listener>
 </web-app>

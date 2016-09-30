@@ -1,6 +1,6 @@
-package com.clef.restapi.tests;
+package com.rep5.sialah.webendpoint.tests;
 
-import com.clef.restapi.Main;
+import com.rep5.sialah.webendpoint.Main;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.junit.After;
 import org.junit.Before;
