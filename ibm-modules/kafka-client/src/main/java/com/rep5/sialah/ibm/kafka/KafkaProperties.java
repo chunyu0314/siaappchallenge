@@ -23,6 +23,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * Properties used by kafka
  */
 class KafkaProperties {
+
+    static final String KAFKA_BOOTSTRAP = "lhhong.asuscomm.com:9092";
+    static final String PARTITIONER_CLASS = "com.clef.infra.kafka.KafkaPartitioner";
+    static final String KEY_SERIALIZER = StringSerializer.class.getName();
+    static final String VALUE_SERIALIZER = StringSerializer.class.getName();
+    static final String KEY_DESERIALIZER = StringDeserializer.class.getName();
+    static final String VALUE_DESERIALIZER = StringDeserializer.class.getName();
+    static final String REQUEST_ACK = "1";
+/*
     private static final String JAAS_CONFIG_PROPERTY = "java.security.auth.login.config";
     private static final long HOUR_IN_MILLISECONDS = 3600000L;
     private static final Logger logger = Logger.getLogger(KafkaProperties.class);
@@ -189,19 +198,18 @@ class KafkaProperties {
 
         props.put("client.id", apiKey);
         props.put("bootstrap.servers", broker);
-        props.put("ssl.truststore.location", "/usr/lib/jvm/oracle_jdk8/jre/lib/security/cacerts");
-        //TODO cacert location of liberty -> /home/vcap/app/.java/jre/lib/security/cacerts
+        //props.put("ssl.truststore.location", "/usr/lib/jvm/oracle_jdk8/jre/lib/security/cacerts");
+        props.put("ssl.truststore.location", "/home/vcap/app/.java/jre/lib/security/cacerts");
         props.put("ssl.truststore.password", "changeit");
 
         return props;
     }
-   /*
     static final String KAFKA_BOOTSTRAP = "23.96.61.60:9092";
     static final String PARTITIONER_CLASS = "com.clef.infra.kafka.KafkaPartitioner";
-    */
     static final String KEY_SERIALIZER = StringSerializer.class.getName();
     static final String VALUE_SERIALIZER = StringSerializer.class.getName();
     static final String KEY_DESERIALIZER = StringDeserializer.class.getName();
     static final String VALUE_DESERIALIZER = StringDeserializer.class.getName();
     static final String REQUEST_ACK = "1";
+    */
 }

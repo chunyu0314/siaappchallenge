@@ -15,9 +15,11 @@ public class Messages {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     @Path("transaction")
     public Response sendMessage(SiaMessage msg) {
-        return Response.accepted().build();
+        MessageFactory.send("test", msg);
+        return Response.ok(MessageFactory.receiveTest(), MediaType.APPLICATION_JSON).build();
     }
     /*
     @GET

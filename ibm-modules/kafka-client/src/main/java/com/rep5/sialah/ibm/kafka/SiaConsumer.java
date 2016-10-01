@@ -34,21 +34,31 @@ public class SiaConsumer implements Runnable {
     }
 
     public SiaConsumer(int id, String groupId, List<String> topics, int partitionNumber) {
-        setup(id, groupId, topics);
+        setup(groupId, topics);
         for (String topic: topics) {
             this.partition.add(new TopicPartition(topic, partitionNumber));
         }
         isPartitioned = true;
     }
 
-    public SiaConsumer(int id, String groupId, List<String> topics) {
-        setup(id, groupId, topics);
+    public SiaConsumer(String groupId, String topic) {
+        topics = new ArrayList<>();
+        topics.add(topic);
+        setup(groupId, topics);
     }
 
-    private void setup(int id, String groupId, List<String> topics) {
-        this.id = id;
+    public SiaConsumer(String groupId, List<String> topics) {
+        setup(groupId, topics);
+    }
+
+    private void setup(String groupId, List<String> topics) {
         this.topics = topics;
-        Properties prop = KafkaProperties.getClientConfiguration(KafkaProperties.getKafkaHost(), KafkaProperties.getApiKey(), false);
+        Properties prop = new Properties();
+        prop.put("bootstrap.servers", KafkaProperties.KAFKA_BOOTSTRAP);
+        prop.put("group.id", groupId);
+        prop.put("key.deserializer", KafkaProperties.KEY_DESERIALIZER);
+        prop.put("value.deserializer", KafkaProperties.VALUE_DESERIALIZER);
+
         this.consumer = new KafkaConsumer<>(prop);
         if (isPartitioned) {
             consumer.assign(partition);
@@ -60,10 +70,14 @@ public class SiaConsumer implements Runnable {
 
     }
 
+    public String manualPollOne() {
+        return manualPoll().get(0);
+    }
+
     public List<String> manualPoll() {
 
         List<String> list = new ArrayList<>();
-        ConsumerRecords<String, String> records = consumer.poll(300L);
+        ConsumerRecords<String, String> records = consumer.poll(600L);
         for (ConsumerRecord<String, String> record : records) {
             list.add(record.value());
         }

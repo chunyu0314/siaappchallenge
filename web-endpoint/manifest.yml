@@ -1,0 +1,12 @@
+applications:
+- path: target/web-endpoint-1.0-SNAPSHOT.war
+  memory: 512M
+  instances: 1
+  domain: mybluemix.net
+  name: sia-restendpoint
+  host: sia-restendpoint
+  disk_quota: 1024M
+  services:
+  - Conversation-ru
+  - Message Hub-24
+  - Push Notifications-q3

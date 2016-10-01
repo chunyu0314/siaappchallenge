@@ -19,6 +19,34 @@ import static java.lang.Thread.sleep;
  * Complete test of kafka producer and consumer, requires kafka service running
  */
 public class KafkaTest {
+
+    @Ignore
+    @Test
+    public void testManualPoll(){
+        String testString = "TEST " + new Date(System.currentTimeMillis());
+        String topic = "test";
+        List<String> topics = new ArrayList<>();
+        SiaConsumer consumer;
+        SiaProducer producer = new SiaProducer();
+
+        topics.add(topic);
+        consumer = new SiaConsumer("sia-group", topics);
+
+
+        try {
+            sleep(6000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        producer.write(topic, testString);
+        String message = consumer.manualPollOne();
+
+        consumer.shutdown();
+
+        Assert.assertEquals(testString, message);
+    }
+
     @Ignore
     @Test
     public void testKafka(){
@@ -28,12 +56,10 @@ public class KafkaTest {
         SiaConsumer consumer;
         SiaProducer producer = new SiaProducer();
         SiaMessage msg = new SiaMessage();
-        //final String[] receiptString = new String[1];
 
         topics.add(topic);
-        consumer = new SiaConsumer(1, "es-group", topics);
+        consumer = new SiaConsumer("sia-group", topics);
 
-        //receiptString[0] = data;
         ConsumerListener listener = msg::setMessage;
 
         consumer.addListener(listener);

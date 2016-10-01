@@ -20,7 +20,11 @@ public class SiaProducer implements AutoCloseable {
     private static Logger logger = LoggerFactory.getLogger(SiaProducer.class);
 
     public SiaProducer() {
-        Properties prop = KafkaProperties.getClientConfiguration(KafkaProperties.getKafkaHost(),KafkaProperties.getApiKey(), true);
+        Properties prop = new Properties();
+        prop.put("bootstrap.servers", KafkaProperties.KAFKA_BOOTSTRAP);
+        prop.put("request.required.acks", KafkaProperties.REQUEST_ACK);
+        prop.put("key.serializer", KafkaProperties.KEY_SERIALIZER);
+        prop.put("value.serializer", KafkaProperties.VALUE_SERIALIZER);
         producer = new KafkaProducer<>(prop);
     }
 
