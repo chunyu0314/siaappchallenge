@@ -4,6 +4,7 @@ import com.rep5.sialah.common.models.SiaMessage;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Request;
 import javax.ws.rs.core.Response;
 
 /**
@@ -12,6 +13,18 @@ import javax.ws.rs.core.Response;
 
 @Path("messages")
 public class Messages {
+
+    @POST
+    @Path("test")
+    public Response test(String test) {
+        return Response.ok(test + " is WORKING", MediaType.TEXT_PLAIN).build();
+    }
+
+    @GET
+    @Path("test")
+    public Response testGet() {
+        return Response.ok("This is WORKING", MediaType.TEXT_PLAIN).build();
+    }
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
