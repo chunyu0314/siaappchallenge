@@ -20,7 +20,7 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <version>3.0.0</version>
                 <configuration>
-                    <outputDirectory>../deployments</outputDirectory>
+                    <outputDirectory>/home/jboss/source/target</outputDirectory>
                 </configuration>
             </plugin>
         </plugins>
