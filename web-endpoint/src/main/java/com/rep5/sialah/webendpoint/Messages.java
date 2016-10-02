@@ -17,7 +17,7 @@ public class Messages {
     @POST
     @Path("test")
     public Response test(String test) {
-        return Response.ok(test + " is WORKING", MediaType.TEXT_PLAIN).build();
+        return Response.ok(test, MediaType.TEXT_PLAIN).build();
     }
 
     @GET
