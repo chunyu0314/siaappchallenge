@@ -40,7 +40,15 @@ public class KafkaTest {
         }
 
         producer.write(topic, testString);
-        String message = consumer.manualPollOne();
+
+        try {
+            sleep(7000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("consumer to receive");
+
+       String message = consumer.manualPollOne();
 
         consumer.shutdown();
 

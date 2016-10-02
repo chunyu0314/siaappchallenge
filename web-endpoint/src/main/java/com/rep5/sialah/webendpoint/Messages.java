@@ -4,7 +4,6 @@ import com.rep5.sialah.common.models.SiaMessage;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Request;
 import javax.ws.rs.core.Response;
 
 /**
@@ -13,6 +12,40 @@ import javax.ws.rs.core.Response;
 
 @Path("messages")
 public class Messages {
+
+    @GET
+    @Produces(MediaType.APPLICATION_OCTET_STREAM)
+    @Path("boarding_pass")
+    public Response getBoardingPass() {
+        return Response.ok().build();
+    }
+
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/")
+    public Response send(SiaMessage message) {
+        Handler.handleText(message);
+        return Response.ok().build();
+    }
+
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/cus_service")
+    public Response cusService(SiaMessage message) {
+        Handler.handleServiceReply(message);
+        return Response.ok().build();
+    }
+
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/steward")
+    public Response stewardReply(SiaMessage message) {
+        Handler.handleSteward(message);
+        return Response.ok().build();
+    }
 
     @POST
     @Path("test")

@@ -8,8 +8,8 @@ import java.io.Serializable;
 public class SiaMessage implements Serializable {
 
 
-    private String message = "";
-    private String data = "";
+    private String message;
+    private Context context;
 
     public SiaMessage() {
 
@@ -23,11 +23,11 @@ public class SiaMessage implements Serializable {
         this.message = message;
     }
 
-    public String getData() {
-        return data;
+    public Context getContext() {
+        return context;
     }
 
-    public void setData(String data) {
-        this.data = data;
+    public void setContext(Context context) {
+        this.context = context;
     }
 }

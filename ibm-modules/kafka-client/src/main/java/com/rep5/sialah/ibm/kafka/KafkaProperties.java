@@ -1,22 +1,7 @@
 package com.rep5.sialah.ibm.kafka;
 
-import com.rep5.sialah.common.models.MessageHubCredentials;
-import com.rep5.sialah.common.models.MessageHubEnvironment;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.common.serialization.StringSerializer;
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
-
-import java.io.*;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.Iterator;
-import java.util.Properties;
-
-
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * Created by low on 23/5/16.
