@@ -7,6 +7,9 @@ public class FcmNotif {
     String title;
     String body;
 
+    public FcmNotif() {
+    }
+
     public String getTitle() {
         return title;
     }

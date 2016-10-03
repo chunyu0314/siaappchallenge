@@ -12,6 +12,9 @@ public class Context {
     private Map<String, Object> system;
     private SiaData siaData;
 
+    public Context() {
+    }
+
     public String getConversation_id() {
         return conversation_id;
     }

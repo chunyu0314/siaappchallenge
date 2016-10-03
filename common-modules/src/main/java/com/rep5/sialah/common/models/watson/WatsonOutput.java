@@ -7,6 +7,9 @@ public class WatsonOutput {
     private String text;
     private String[] nodes_visited;
 
+    public WatsonOutput() {
+    }
+
     public String getText() {
         return text;
     }

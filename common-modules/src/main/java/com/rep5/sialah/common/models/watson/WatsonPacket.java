@@ -12,6 +12,9 @@ public class WatsonPacket {
     private boolean alternate_intents;
     private Context context;
 
+    public WatsonPacket() {
+    }
+
     public WatsonInput getInput() {
         return input;
     }
@@ -36,7 +39,7 @@ public class WatsonPacket {
         this.entities = entities;
     }
 
-    public boolean isAlternate_intents() {
+    public boolean getAlternate_intents() {
         return alternate_intents;
     }
 

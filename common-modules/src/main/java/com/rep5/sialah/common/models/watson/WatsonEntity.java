@@ -8,6 +8,9 @@ public class WatsonEntity {
     private int[] location;
     private String value;
 
+    public WatsonEntity() {
+    }
+
     public String getEntity() {
         return entity;
     }

@@ -6,6 +6,9 @@ package com.rep5.sialah.common.models.watson;
 public class WatsonInput {
     private String text;
 
+    public WatsonInput() {
+    }
+
     public String getText() {
         return text;
     }

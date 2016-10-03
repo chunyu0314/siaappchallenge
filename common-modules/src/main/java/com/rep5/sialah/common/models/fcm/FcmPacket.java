@@ -10,6 +10,9 @@ public class FcmPacket {
     private FcmNotif notification;
     private SiaMessage data;
 
+    public FcmPacket() {
+    }
+
     public String getTo() {
         return to;
     }

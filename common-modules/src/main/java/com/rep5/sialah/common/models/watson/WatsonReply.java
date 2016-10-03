@@ -12,6 +12,9 @@ public class WatsonReply {
     private Context context;
     private WatsonOutput output;
 
+    public WatsonReply() {
+    }
+
     public WatsonInput getInput() {
         return input;
     }

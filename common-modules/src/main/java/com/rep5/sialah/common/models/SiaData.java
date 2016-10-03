@@ -28,6 +28,12 @@ public class SiaData {
     //to be set by jx
     private boolean talkingToCustomerService;
 
+    //for watson use
+    private boolean inFlight;
+
+    public SiaData() {
+    }
+
     public boolean getFakeBooking() {
         return fakeBooking;
     }
@@ -66,5 +72,13 @@ public class SiaData {
 
     public void setTalkingToCustomerService(boolean talkingToCustomerService) {
         this.talkingToCustomerService = talkingToCustomerService;
+    }
+
+    public boolean getInFlight() {
+        return inFlight;
+    }
+
+    public void setInFlight(boolean inFlight) {
+        this.inFlight = inFlight;
     }
 }

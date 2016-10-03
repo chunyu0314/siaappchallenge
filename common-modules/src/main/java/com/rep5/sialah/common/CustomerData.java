@@ -6,6 +6,9 @@ package com.rep5.sialah.common;
 public class CustomerData {
     private static String firebaseToken;
 
+    public CustomerData() {
+    }
+
     public static String getFirebaseToken() {
         return firebaseToken;
     }

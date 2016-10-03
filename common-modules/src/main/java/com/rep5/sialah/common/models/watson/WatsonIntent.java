@@ -6,4 +6,23 @@ package com.rep5.sialah.common.models.watson;
 public class WatsonIntent {
     private String intent;
     private double confidence;
+
+    public WatsonIntent() {
+    }
+
+    public String getIntent() {
+        return intent;
+    }
+
+    public void setIntent(String intent) {
+        this.intent = intent;
+    }
+
+    public double getConfidence() {
+        return confidence;
+    }
+
+    public void setConfidence(double confidence) {
+        this.confidence = confidence;
+    }
 }

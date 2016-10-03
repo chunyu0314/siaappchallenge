@@ -1,10 +1,10 @@
+package com.rep5.sialah.pushnotif;
+
 import com.rep5.sialah.common.RestClient;
-import com.rep5.sialah.common.models.SiaMessage;
 import com.rep5.sialah.common.models.fcm.FcmPacket;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.ws.rs.HeaderParam;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
@@ -15,7 +15,7 @@ import javax.ws.rs.core.Response;
  */
 public class FCMImpl {
     private static final String url = "https://fcm.googleapis.com/fcm/send";
-    private static final String apiKey = "INSERT API KEY HERE";
+    private static final String apiKey = "AIzaSyAlw5imiOSohUaNVnWi5O0a_pXOMvW4tpw";
     private static final Logger logger = LoggerFactory.getLogger(FCMImpl.class);
 
     public static void push(FcmPacket msg) {
