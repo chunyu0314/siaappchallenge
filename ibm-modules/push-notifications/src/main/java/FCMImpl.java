@@ -1,5 +1,6 @@
 import com.rep5.sialah.common.RestClient;
 import com.rep5.sialah.common.models.SiaMessage;
+import com.rep5.sialah.common.models.fcm.FcmPacket;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,7 +18,7 @@ public class FCMImpl {
     private static final String apiKey = "INSERT API KEY HERE";
     private static final Logger logger = LoggerFactory.getLogger(FCMImpl.class);
 
-    public static void push(SiaMessage msg) {
+    public static void push(FcmPacket msg) {
 
         Response response = RestClient.getTarget(url).request().header(HttpHeaders.AUTHORIZATION, "key=" + apiKey).post(Entity.entity(msg, MediaType.APPLICATION_JSON));
         if (response.getStatus()/100 != 2) {
