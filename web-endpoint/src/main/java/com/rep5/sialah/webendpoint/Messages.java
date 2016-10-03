@@ -1,5 +1,6 @@
 package com.rep5.sialah.webendpoint;
 
+import com.rep5.sialah.common.CustomerData;
 import com.rep5.sialah.common.models.SiaMessage;
 
 import javax.ws.rs.*;
@@ -12,6 +13,14 @@ import javax.ws.rs.core.Response;
 
 @Path("messages")
 public class Messages {
+
+    @POST
+    @Consumes(MediaType.TEXT_PLAIN)
+    @Path("fcm_id")
+    public Response postId(String token) {
+        CustomerData.setFirebaseToken(token);
+        return Response.ok().build();
+    }
 
     @GET
     @Produces(MediaType.APPLICATION_OCTET_STREAM)

@@ -21,11 +21,11 @@ import java.security.cert.X509Certificate;
  */
 public class RestClient {
     public static Client client;
-    private SSLContext ssl;
-    WebTarget target;
+    private static SSLContext ssl;
     private static final Logger logger = LoggerFactory.getLogger(RestClient.class);
 
-    public void init() {
+    public static void init() {
+        /*
         TrustManager[] trustAllCerts = new TrustManager[]{new X509TrustManager(){
             public X509Certificate[] getAcceptedIssuers(){return null;}
             public void checkClientTrusted(X509Certificate[] certs, String authType){}
@@ -38,16 +38,18 @@ public class RestClient {
             e.printStackTrace();
         }
         client = ClientBuilder.newBuilder().sslContext(ssl).hostnameVerifier((s, sslSession) -> true).register(JacksonFeature.class).build();
+        */
+        client = ClientBuilder.newBuilder().register(JacksonFeature.class).build();
     }
 
-    public WebTarget getTarget(String url) {
+    public static WebTarget getTarget(String url) {
         if (client == null) {
             init();
         }
         return client.target(url);
     }
-/*
-    *//**
+
+    /**
      *
      * @param username
      * @return Error codes: USER_NOT_EXIST, null

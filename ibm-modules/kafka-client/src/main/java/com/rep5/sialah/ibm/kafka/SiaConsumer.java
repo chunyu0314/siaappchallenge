@@ -1,6 +1,5 @@
 package com.rep5.sialah.ibm.kafka;
 
-import com.sun.jmx.remote.internal.ArrayQueue;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
