@@ -56,20 +56,52 @@ public class Handler {
 
     }
 
+    private static void doPush(String text) {
+
+        SiaMessage msg = new SiaMessage();
+        msg.setContext(ContextCache.getContextAndReset());
+        msg.setMessage(text);
+        FCMImpl.push(FCMImpl.createFcmPacket(msg));
+    }
+
     public static void handleServiceReply(String reply) {
 
         if (!ContextCache.isTalkToCus()) {
             logger.error("Customer service talking while state is not set");
             return;
         }
-        SiaMessage msg = new SiaMessage();
-        msg.setContext(ContextCache.getContextAndReset());
-        FCMImpl.push(FCMImpl.createFcmPacket(msg));
+        doPush(reply);
 
     }
 
+    //TODO to handle messages to be sent to customer service
     public static void handleService(StoreConvo convo) {
 
 
     }
+
+    public static void sendBaggage() {
+        doPush("Your baggage have been loaded onto the plane");
+    }
+
+    public static void sendCheckin() {
+        doPush("Your check in counter will be at blah blah blah");
+    }
+
+    public static void boardedPlane() {
+        doPush("Hi, welcome on board, please connect to the on board wifi to continue using me!");
+    }
+
+    public static void sendSchedule() {
+        doPush("This time off lights, this time get hot towel, blah blah");
+    }
+
+    public static void reachedDestination() {
+        doPush("Welcome to San Francisco");
+        doPush("Weather is good!!");
+        doPush("you can get your sim card here");
+        doPush("at the mean time connect to #SFO_FREE_WIFI");
+    }
+
+
 }

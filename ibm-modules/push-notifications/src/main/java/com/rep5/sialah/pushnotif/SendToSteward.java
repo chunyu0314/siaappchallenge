@@ -13,7 +13,7 @@ import javax.ws.rs.core.MediaType;
  */
 public class SendToSteward {
 
-    private static final String URL = "hijiarui";
+    private static final String URL = "http://sia-steward-board-sia-steward-board.44fs.preview.openshiftapps.com/api/users";
 
     public static void fakeSend() {
         StewardReceipt msg = new StewardReceipt();

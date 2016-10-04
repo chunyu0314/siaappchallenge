@@ -62,7 +62,7 @@ public class Messages {
     @POST
     @Path("test")
     public Response test(String test) {
-        return Response.ok(test, MediaType.TEXT_PLAIN).build();
+        return Response.ok(test, MediaType.TEXT_PLAIN).header("Access-Control-Allow-Origin", "*").build();
     }
 
     @GET
@@ -77,7 +77,7 @@ public class Messages {
     @Path("transaction")
     public Response sendMessage(SiaMessage msg) {
         MessageFactory.send("test", msg);
-        return Response.ok(MessageFactory.receiveTest(), MediaType.APPLICATION_JSON).build();
+        return Response.ok(MessageFactory.receive(), MediaType.APPLICATION_JSON).build();
     }
     /*
     @GET

@@ -19,9 +19,31 @@ import javax.ws.rs.core.Response;
 public class Signals {
 
     @GET
+    @Path("baggage")
+    public Response getQueue() {
+        Handler.sendBaggage();
+        return Response.accepted().build();
+    }
+
+    @GET
     @Path("on_flight")
     public Response onFlight() {
         ContextCache.inFlight();
+        Handler.boardedPlane();
+        return Response.accepted().build();
+    }
+
+    @GET
+    @Path("flight_schedule")
+    public Response sendSchedule() {
+        Handler.sendSchedule();
+        return Response.accepted().build();
+    }
+
+    @GET
+    @Path("one_day_before")
+    public Response oneDayBefore() {
+        Handler.sendCheckin();
         return Response.accepted().build();
     }
 
@@ -29,11 +51,12 @@ public class Signals {
     @Path("off_flight")
     public Response offFlight() {
         ContextCache.offFlight();
+        Handler.reachedDestination();
         return Response.accepted().build();
     }
 
     @GET
-    @Path("send_steward")
+    @Path("send_fake_steward")
     public Response fakeSend() {
         SendToSteward.fakeSend();
         return Response.accepted().build();
