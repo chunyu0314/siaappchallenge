@@ -12,26 +12,43 @@ public class SiaData {
     private boolean fakeBooking;
 
     //tell jiarui seat number of the person who requested seat
-    private String seatNumber;
+//    private String seatNumber;
 
     //tell jiarui what the customer request type, ie, order snack or buy stuff
     //also to signal the next message will be pushed to jr
     //to be set in watson
     private String customerRequestType;
+    private String customerRequestItem;
 
     //stores previous convo for customer service, jx to set this value
     //store from earliest to latest
     //clear after 1st contact to reduce payload
     //prepend each string with source of msg, use "usr-Whatever message" and "bot-Whatever message"
-    private String[] pastFiveConvo;
+//    private String[] pastFiveConvo;
 
     //to be set by jx
-    private boolean talkingToCustomerService;
+//    private boolean talkingToCustomerService;
 
     //for watson use
     private boolean inFlight;
 
     public SiaData() {
+    }
+
+    public String getCustomerRequestType() {
+        return customerRequestType;
+    }
+
+    public void setCustomerRequestType(String customerRequestType) {
+        this.customerRequestType = customerRequestType;
+    }
+
+    public String getCustomerRequestItem() {
+        return customerRequestItem;
+    }
+
+    public void setCustomerRequestItem(String customerRequestItem) {
+        this.customerRequestItem = customerRequestItem;
     }
 
     public boolean getFakeBooking() {
@@ -41,7 +58,7 @@ public class SiaData {
     public void setFakeBooking(boolean fakeBooking) {
         this.fakeBooking = fakeBooking;
     }
-
+/*
     public String getSeatNumber() {
         return seatNumber;
     }
@@ -73,7 +90,7 @@ public class SiaData {
     public void setTalkingToCustomerService(boolean talkingToCustomerService) {
         this.talkingToCustomerService = talkingToCustomerService;
     }
-
+*/
     public boolean getInFlight() {
         return inFlight;
     }

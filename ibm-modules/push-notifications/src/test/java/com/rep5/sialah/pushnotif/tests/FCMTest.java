@@ -22,14 +22,12 @@ public class FCMTest {
 
         SiaData data = new SiaData();
         data.setFakeBooking(true);
-        data.setCustomerRequestType("Order food");
 
         Context context = new Context();
         context.setSiaData(data);
 
         SiaMessage message = new SiaMessage();
         message.setMessage("MESSAGE BODY");
-        message.setId(1235);
         message.setContext(context);
 
         FcmPacket packet = new FcmPacket();

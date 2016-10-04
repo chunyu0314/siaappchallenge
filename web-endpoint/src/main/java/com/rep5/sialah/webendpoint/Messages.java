@@ -2,6 +2,7 @@ package com.rep5.sialah.webendpoint;
 
 import com.rep5.sialah.common.CustomerData;
 import com.rep5.sialah.common.models.SiaMessage;
+import com.rep5.sialah.common.models.StewardReply;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -42,19 +43,18 @@ public class Messages {
     }
 
     @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    @Path("/cus_service")
-    public Response cusService(SiaMessage message) {
-        Handler.handleServiceReply(message);
-        return Response.ok().build();
+    @Consumes(MediaType.TEXT_PLAIN)
+    @Path("service")
+    public Response cusReply(String reply) {
+        Handler.handleServiceReply(reply);
+        return Response.accepted().build();
     }
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/steward")
-    public Response stewardReply(SiaMessage message) {
+    @Path("steward")
+    public Response stewardReply(StewardReply message) {
         Handler.handleSteward(message);
         return Response.ok().build();
     }
