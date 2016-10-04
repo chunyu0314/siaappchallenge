@@ -1,6 +1,8 @@
 package com.rep5.sialah.common;
 
+import org.glassfish.jersey.client.ClientConfig;
 import org.glassfish.jersey.client.JerseyClientBuilder;
+import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
 import org.glassfish.jersey.jackson.JacksonFeature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +23,7 @@ import java.security.cert.X509Certificate;
  * Created by low on 17/7/16 1:12 PM.
  */
 public class RestClient {
-    public static Client client;
+    private static Client client;
     private static SSLContext ssl;
     private static final Logger logger = LoggerFactory.getLogger(RestClient.class);
 
@@ -41,6 +43,13 @@ public class RestClient {
         client = ClientBuilder.newBuilder().sslContext(ssl).hostnameVerifier((s, sslSession) -> true).register(JacksonFeature.class).build();
         */
         client = ClientBuilder.newBuilder().register(JacksonFeature.class).build();
+    }
+
+    public static Client getClient() {
+        if (client == null) {
+            init();
+        }
+        return client;
     }
 
     public static WebTarget getTarget(String url) {

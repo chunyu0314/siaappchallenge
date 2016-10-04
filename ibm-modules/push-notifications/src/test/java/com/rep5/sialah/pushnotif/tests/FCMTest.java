@@ -1,4 +1,4 @@
-package com.sialah.pushnotif.tests;
+package com.rep5.sialah.pushnotif.tests;
 
 import com.rep5.sialah.common.models.Context;
 import com.rep5.sialah.common.models.SiaData;
@@ -35,8 +35,8 @@ public class FCMTest {
         FcmPacket packet = new FcmPacket();
         packet.setNotification(notif);
         packet.setData(message);
-        //TODO change setTo()
-        packet.setTo("SET TO THE RECEIVER");
+        //packet.setTo("/topics/sia");
+        packet.setTo("cJdxbi_sHXQ:APA91bFxG7Te02f_zAiHGhNaVfFq_8GIubnxnYRiDSZhcDpIqOfc8zbD3CICDqN0mXp1L9aA4_sItYHITKkbKdBjSFW2kC6DNCP_1r8fJXyIhri9SW0KU7i4PPU-GwYfa6N028gUyT5b");
 
         FCMImpl.push(packet);
     }

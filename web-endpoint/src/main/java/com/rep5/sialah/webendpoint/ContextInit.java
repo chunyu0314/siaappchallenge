@@ -11,8 +11,8 @@ public class ContextInit implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent arg0) {
-        MessageFactory.init();
-        //MessageSort.init(instanceId);
+        //TODO uncomment if kafka is needed
+        //MessageFactory.init();
     }
 
     @Override

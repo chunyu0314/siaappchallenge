@@ -6,11 +6,13 @@ import com.rep5.sialah.common.models.Context;
  * Created by low on 3/10/16 9:03 AM.
  */
 public class WatsonReply {
+
     private WatsonInput input;
     private WatsonIntent[] intents;
     private WatsonEntity[] entities;
     private Context context;
     private WatsonOutput output;
+    private Object error;
 
     public WatsonReply() {
     }
@@ -21,6 +23,14 @@ public class WatsonReply {
 
     public void setInput(WatsonInput input) {
         this.input = input;
+    }
+
+    public Object getError() {
+        return error;
+    }
+
+    public void setError(Object error) {
+        this.error = error;
     }
 
     public WatsonIntent[] getIntents() {

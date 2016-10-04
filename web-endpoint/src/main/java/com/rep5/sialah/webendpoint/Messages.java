@@ -2,6 +2,8 @@ package com.rep5.sialah.webendpoint;
 
 import com.rep5.sialah.common.CustomerData;
 import com.rep5.sialah.common.models.SiaMessage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -14,10 +16,13 @@ import javax.ws.rs.core.Response;
 @Path("messages")
 public class Messages {
 
+    private static final Logger logger = LoggerFactory.getLogger(Messages.class);
+
     @POST
     @Consumes(MediaType.TEXT_PLAIN)
     @Path("fcm_id")
     public Response postId(String token) {
+        logger.info("Received session token: " + token);
         CustomerData.setFirebaseToken(token);
         return Response.ok().build();
     }
@@ -31,8 +36,6 @@ public class Messages {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    @Path("/")
     public Response send(SiaMessage message) {
         Handler.handleText(message);
         return Response.ok().build();
