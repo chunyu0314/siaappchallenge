@@ -5,7 +5,7 @@ import com.rep5.sialah.common.models.Context;
 import com.rep5.sialah.common.models.SiaData;
 import com.rep5.sialah.common.models.SiaMessage;
 import com.rep5.sialah.convo.ConvoImpl;
-import jdk.nashorn.internal.ir.annotations.Ignore;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**

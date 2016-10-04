@@ -46,17 +46,13 @@ public class FCMImpl {
             packet = createFcmPacket(message);
         } catch (Exception e) {
             logger.error("no token found in customer data");
+            return;
         }
 
         push(packet);
     }
 
     public static FcmPacket createFcmPacket(SiaMessage message) throws Exception {
-
-        String token = CustomerData.getFirebaseToken();
-        if (token == null) {
-            throw new Exception("no token");
-        }
 
         FcmNotif notif = new FcmNotif();
         notif.setBody(message.getMessage());
@@ -65,7 +61,9 @@ public class FCMImpl {
         FcmPacket packet = new FcmPacket();
         packet.setNotification(notif);
         packet.setData(message);
-        packet.setTo(CustomerData.getFirebaseToken());
+        //TODO decide to use topic or token
+        packet.setTo("/topics/sia");
+        //packet.setTo(CustomerData.getFirebaseToken());
 
         return packet;
     }

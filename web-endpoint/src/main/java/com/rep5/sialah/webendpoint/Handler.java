@@ -29,7 +29,7 @@ public class Handler {
 
         message.setContext(ContextCache.getContextAndReset());
         SiaMessage watsonReply = ConvoImpl.useConvo(message);
-        if (watsonReply.getContext().getSiaData().getCustomerRequestItem() != null) {
+        if (watsonReply.getContext().getSiaData().getCustomerRequestType() != null) {
             StewardReceipt msgToSteward = new StewardReceipt();
             msgToSteward.setId(ContextCache.getNewId());
             msgToSteward.setRequestType(watsonReply.getContext().getSiaData().getCustomerRequestType());
@@ -40,22 +40,21 @@ public class Handler {
 
     }
 
-    public static void handleSteward(StewardReply message) {
+    public static void handleSteward(String status) {
         String item = ContextCache.getContext().getSiaData().getCustomerRequestItem();
-        SiaMessage msg = new SiaMessage();
-        msg.setContext(ContextCache.getContextAndReset());
-        if (message.getStatus().matches(Constants.ACCEPTED)) {
-            msg.setMessage("Your request have been accepted. The " + item + " will be served to you shortly.");
+        String response = "default";
+        if (status.matches(Constants.ACCEPTED)) {
+            response = "Your request has been accepted. The " + item + " will be served to you shortly.";
         }
 
-        else if (message.getStatus().matches(Constants.POSTPONED)) {
-            msg.setMessage("Sorry, our air stewardess are unable to attend tou you right now. We will be notifying you again when your request is ready.");
+        else if (status.matches(Constants.POSTPONED)) {
+            response = "Sorry, our air stewardess are unable to attend tou you right now. We will be notifying you again when your request is ready.";
         }
 
-        else if (message.getStatus().matches(Constants.REJECTED)) {
-            msg.setMessage("Sorry, " + item + "s are no longer available, would you like to make another request?");
+        else if (status.matches(Constants.REJECTED)) {
+            response = "Sorry, " + item + " are no longer available, would you like to make another request?";
         }
-        FCMImpl.pushSiaMessage(msg);
+        doPush(response);
 
     }
 
@@ -101,10 +100,28 @@ public class Handler {
 
     public static void reachedDestination() {
         doPush("Welcome to San Francisco");
+        try {
+            Thread.sleep(300);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         doPush("Weather is good!!");
+        try {
+            Thread.sleep(300);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         doPush("you can get your sim card here");
+        try {
+            Thread.sleep(300);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         doPush("at the mean time connect to #SFO_FREE_WIFI");
     }
 
 
+    public static void sendFirstMessage() {
+        doPush("Hi, I am SIA, Sia Intelligent Assistant. You can ask me anything!");
+    }
 }

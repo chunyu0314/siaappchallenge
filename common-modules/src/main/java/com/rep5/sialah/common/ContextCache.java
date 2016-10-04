@@ -39,7 +39,6 @@ public class ContextCache {
             init();
         }
         context.getSiaData().setFakeBooking(false);
-        context.getSiaData().setCustomerRequestItem(null);
         context.getSiaData().setCustomerRequestType(null);
         return context;
     }

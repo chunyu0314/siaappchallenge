@@ -24,6 +24,7 @@ public class Messages {
     @Path("fcm_id")
     public Response postId(String token) {
         logger.info("Received session token: " + token);
+        Handler.sendFirstMessage();
         CustomerData.setFirebaseToken(token);
         return Response.ok().build();
     }
@@ -51,11 +52,10 @@ public class Messages {
     }
 
     @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.TEXT_PLAIN)
     @Path("steward")
-    public Response stewardReply(StewardReply message) {
-        Handler.handleSteward(message);
+    public Response stewardReply(String status) {
+        Handler.handleSteward(status);
         return Response.ok().header("Access-Control-Allow-Origin", "*").build();
     }
 

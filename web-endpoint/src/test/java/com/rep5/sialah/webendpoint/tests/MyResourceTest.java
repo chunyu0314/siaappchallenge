@@ -19,6 +19,7 @@ public class MyResourceTest {
     private HttpServer server;
     private WebTarget target;
 
+    @Ignore
     @Before
     public void setUp() throws Exception {
         server = Main.startServer();
@@ -27,6 +28,7 @@ public class MyResourceTest {
         target = c.target(Main.BASE_URI);
     }
 
+    @Ignore
     @After
     public void tearDown() throws Exception {
         server.shutdown();
