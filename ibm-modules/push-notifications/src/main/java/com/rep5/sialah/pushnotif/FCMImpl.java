@@ -35,7 +35,7 @@ public class FCMImpl {
         }
     }
 
-    public static void createFcmPacket(SiaMessage message) {
+    public static FcmPacket createFcmPacket(SiaMessage message) {
 
         FcmNotif notif = new FcmNotif();
         notif.setBody(message.getMessage());
@@ -45,5 +45,7 @@ public class FCMImpl {
         packet.setNotification(notif);
         packet.setData(message);
         packet.setTo(CustomerData.getFirebaseToken());
+
+        return packet;
     }
 }

@@ -36,7 +36,7 @@ public class ConvoImpl {
         packet.setContext(message.getContext());
         packet.setInput(input);
 
-        Response response = ConvoClient.getWatsonTarget().request().header(HttpHeaders.AUTHORIZATION, ConvoProperties.AUTHORIZTION)
+        Response response = ConvoClient.getWatsonTarget().request()
                 .post(Entity.entity(JSON.toJSONString(packet), MediaType.APPLICATION_JSON));
         WatsonReply reply = response.readEntity(WatsonReply.class);
 

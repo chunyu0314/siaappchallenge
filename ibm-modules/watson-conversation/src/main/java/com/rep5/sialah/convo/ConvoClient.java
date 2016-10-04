@@ -22,8 +22,8 @@ public class ConvoClient {
                     .build();
             ClientConfig clientConfig = new ClientConfig();
             clientConfig.register(feature) ;
-            //watsonClient = ClientBuilder.newBuilder().withConfig(clientConfig).register(JacksonFeature.class).build();
-            watsonClient = ClientBuilder.newBuilder().register(JacksonFeature.class).build();
+            watsonClient = ClientBuilder.newBuilder().withConfig(clientConfig).register(JacksonFeature.class).build();
+            //watsonClient = ClientBuilder.newBuilder().register(JacksonFeature.class).build();
         }
         return watsonClient.target(ConvoProperties.URL);
     }
