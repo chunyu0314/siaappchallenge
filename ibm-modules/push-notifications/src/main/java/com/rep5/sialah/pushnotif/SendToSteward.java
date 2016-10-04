@@ -20,7 +20,7 @@ public class SendToSteward {
         msg.setId(ContextCache.getNewId());
         msg.setRequestItem("Show me some red wine");
         msg.setRequestType(Constants.STEWARD_REQUEST_SHOP);
-        msg.setSeatNumber("28G");
+        msg.setSeatNumber("22H");
 
         send(msg);
     }
