@@ -20,12 +20,13 @@ public class SendToSteward {
         msg.setId(ContextCache.getNewId());
         msg.setRequestItem("Show me some red wine");
         msg.setRequestType(Constants.STEWARD_REQUEST_SHOP);
-        msg.setSeatNumber("14E");
+        msg.setSeatNumber("28G");
 
         send(msg);
     }
 
     public static void send(StewardReceipt msg) {
-        RestClient.getTarget(URL).request().post(Entity.entity(msg, MediaType.APPLICATION_JSON));
+        ContextCache.setSteward(msg);
+        //RestClient.getTarget(URL).request().post(Entity.entity(msg, MediaType.APPLICATION_JSON));
     }
 }

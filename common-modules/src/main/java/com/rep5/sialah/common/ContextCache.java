@@ -2,6 +2,7 @@ package com.rep5.sialah.common;
 
 import com.rep5.sialah.common.models.Context;
 import com.rep5.sialah.common.models.SiaData;
+import com.rep5.sialah.common.models.StewardReceipt;
 
 /**
  * Created by low on 3/10/16 10:00 PM.
@@ -9,7 +10,18 @@ import com.rep5.sialah.common.models.SiaData;
 public class ContextCache {
     private static Context context;
     private static boolean talkToCus;
+    private static StewardReceipt steward = null;
     private static int id = 0;
+
+    public static StewardReceipt getAndRemoveSteward() {
+        StewardReceipt store = steward;
+        steward = null;
+        return store;
+    }
+
+    public static void setSteward(StewardReceipt newSteward) {
+        steward = newSteward;
+    }
 
     public static int getNewId() {
         return id++;

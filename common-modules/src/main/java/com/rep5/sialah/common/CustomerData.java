@@ -5,7 +5,7 @@ package com.rep5.sialah.common;
  */
 public class CustomerData {
     private static String firebaseToken;
-    private static String seatNumber = "18E";
+    private static String seatNumber = "24C";
 
     public CustomerData() {
     }

@@ -1,7 +1,9 @@
 package com.rep5.sialah.webendpoint;
 
+import com.rep5.sialah.common.ContextCache;
 import com.rep5.sialah.common.CustomerData;
 import com.rep5.sialah.common.models.SiaMessage;
+import com.rep5.sialah.common.models.StewardReceipt;
 import com.rep5.sialah.common.models.StewardReply;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,6 +51,19 @@ public class Messages {
     public Response cusReply(String reply) {
         Handler.handleServiceReply(reply);
         return Response.accepted().build();
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("steward")
+    public Response stewardPoll() {
+        StewardReceipt receipt = ContextCache.getAndRemoveSteward();
+        if (receipt == null) {
+            return Response.noContent().build();
+        }
+        else {
+            return Response.ok(receipt, MediaType.APPLICATION_JSON).header("Access-Control-Allow-Origin", "*").build();
+        }
     }
 
     @POST

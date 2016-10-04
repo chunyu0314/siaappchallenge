@@ -6,6 +6,7 @@ import com.rep5.sialah.common.models.*;
 import com.rep5.sialah.common.models.fcm.FcmPacket;
 import com.rep5.sialah.convo.ConvoImpl;
 import com.rep5.sialah.pushnotif.FCMImpl;
+import com.rep5.sialah.pushnotif.SendToSteward;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,6 +36,7 @@ public class Handler {
             msgToSteward.setRequestType(watsonReply.getContext().getSiaData().getCustomerRequestType());
             msgToSteward.setRequestItem(watsonReply.getContext().getSiaData().getCustomerRequestItem());
             msgToSteward.setSeatNumber(CustomerData.getSeatNumber());
+            SendToSteward.send(msgToSteward);
         }
         FCMImpl.pushSiaMessage(watsonReply);
 
