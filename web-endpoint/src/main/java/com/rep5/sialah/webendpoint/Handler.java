@@ -16,13 +16,16 @@ public class Handler {
 
     private static Logger logger = LoggerFactory.getLogger(Handler.class);
 
-    public static void handleText(SiaMessage message) {
-        logger.info("received message: " + message.getMessage());
+    public static void handleText(String msg) {
+        logger.info("received message: " + msg);
 
         if (ContextCache.isTalkToCus()) {
             //TODO send to customer service
             return;
         }
+
+        SiaMessage message = new SiaMessage();
+        message.setMessage(msg);
 
         message.setContext(ContextCache.getContextAndReset());
         SiaMessage watsonReply = ConvoImpl.useConvo(message);
@@ -33,7 +36,7 @@ public class Handler {
             msgToSteward.setRequestItem(watsonReply.getContext().getSiaData().getCustomerRequestItem());
             msgToSteward.setSeatNumber(CustomerData.getSeatNumber());
         }
-        FCMImpl.push(FCMImpl.createFcmPacket(watsonReply));
+        FCMImpl.pushSiaMessage(watsonReply);
 
     }
 
@@ -52,7 +55,7 @@ public class Handler {
         else if (message.getStatus().matches(Constants.REJECTED)) {
             msg.setMessage("Sorry, " + item + "s are no longer available, would you like to make another request?");
         }
-        FCMImpl.push(FCMImpl.createFcmPacket(msg));
+        FCMImpl.pushSiaMessage(msg);
 
     }
 
@@ -61,7 +64,7 @@ public class Handler {
         SiaMessage msg = new SiaMessage();
         msg.setContext(ContextCache.getContextAndReset());
         msg.setMessage(text);
-        FCMImpl.push(FCMImpl.createFcmPacket(msg));
+        FCMImpl.pushSiaMessage(msg);
     }
 
     public static void handleServiceReply(String reply) {

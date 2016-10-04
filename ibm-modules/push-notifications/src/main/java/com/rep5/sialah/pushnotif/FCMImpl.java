@@ -1,5 +1,7 @@
 package com.rep5.sialah.pushnotif;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.rep5.sialah.common.CustomerData;
 import com.rep5.sialah.common.RestClient;
 import com.rep5.sialah.common.models.SiaMessage;
@@ -25,17 +27,36 @@ public class FCMImpl {
 
     public static void push(FcmPacket msg) {
 
+        logger.info("sending to push notif: " + JSON.toJSONString(msg));
+
         Response response = RestClient.getTarget(url).request().header(HttpHeaders.AUTHORIZATION, "key=" + apiKey).post(Entity.entity(msg, MediaType.APPLICATION_JSON));
         if (response.getStatus()/100 != 2) {
             logger.error("failed to send push notif");
-            logger.error(response.getEntity().toString());
+            logger.error("status code: " + response.getStatus());
+            logger.error(JSON.toJSONString(response.readEntity(JSONObject.class)));
         }
         else {
             logger.info("sent push notif");
         }
     }
 
-    public static FcmPacket createFcmPacket(SiaMessage message) {
+    public static void pushSiaMessage(SiaMessage message) {
+        FcmPacket packet = null;
+        try {
+            packet = createFcmPacket(message);
+        } catch (Exception e) {
+            logger.error("no token found in customer data");
+        }
+
+        push(packet);
+    }
+
+    public static FcmPacket createFcmPacket(SiaMessage message) throws Exception {
+
+        String token = CustomerData.getFirebaseToken();
+        if (token == null) {
+            throw new Exception("no token");
+        }
 
         FcmNotif notif = new FcmNotif();
         notif.setBody(message.getMessage());

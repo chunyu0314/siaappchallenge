@@ -36,8 +36,8 @@ public class Messages {
     }
 
     @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    public Response send(SiaMessage message) {
+    @Consumes(MediaType.TEXT_PLAIN)
+    public Response send(String message) {
         Handler.handleText(message);
         return Response.ok().build();
     }
@@ -56,7 +56,7 @@ public class Messages {
     @Path("steward")
     public Response stewardReply(StewardReply message) {
         Handler.handleSteward(message);
-        return Response.ok().build();
+        return Response.ok().header("Access-Control-Allow-Origin", "*").build();
     }
 
     @POST

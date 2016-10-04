@@ -46,8 +46,6 @@ public class ConvoImpl {
         msg.setContext(reply.getContext());
         ContextCache.cacheContext(reply.getContext());
 
-        logger.info("received Watson Reply: " + JSON.toJSONString(msg));
-
         return msg;
 
     }
