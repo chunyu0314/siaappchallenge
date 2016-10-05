@@ -29,10 +29,20 @@ public class SiaData {
     //to be set by jx
 //    private boolean talkingToCustomerService;
 
+    private Boolean planeChat;
+
     //for watson use
     private boolean inFlight;
 
     public SiaData() {
+    }
+
+    public Boolean getPlaneChat() {
+        return planeChat;
+    }
+
+    public void setPlaneChat(Boolean planeChat) {
+        this.planeChat = planeChat;
     }
 
     public String getCustomerRequestType() {

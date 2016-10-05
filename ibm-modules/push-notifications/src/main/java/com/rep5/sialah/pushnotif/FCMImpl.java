@@ -56,14 +56,14 @@ public class FCMImpl {
 
         FcmNotif notif = new FcmNotif();
         notif.setBody(message.getMessage());
-        notif.setTitle("Message from SIA Intelligent Assistant");
+        notif.setTitle("SIA Intelligent Assistant");
 
         FcmPacket packet = new FcmPacket();
         packet.setNotification(notif);
         packet.setData(message);
         //TODO decide to use topic or token
-        packet.setTo("/topics/sia");
-        //packet.setTo(CustomerData.getFirebaseToken());
+        //packet.setTo("/topics/sia");
+        packet.setTo(CustomerData.getFirebaseToken());
 
         return packet;
     }

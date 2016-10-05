@@ -50,6 +50,7 @@ public class ContextCache {
         if (context == null) {
             init();
         }
+        context.getSiaData().setPlaneChat(false);
         context.getSiaData().setFakeBooking(false);
         context.getSiaData().setCustomerRequestType(null);
         return context;
@@ -59,6 +60,7 @@ public class ContextCache {
         SiaData siaData = new SiaData();
         siaData.setInFlight(false);
         siaData.setFakeBooking(false);
+        siaData.setPlaneChat(false);
 
         context = new Context();
         context.setSiaData(siaData);

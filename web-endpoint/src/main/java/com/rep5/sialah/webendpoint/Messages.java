@@ -2,6 +2,7 @@ package com.rep5.sialah.webendpoint;
 
 import com.rep5.sialah.common.ContextCache;
 import com.rep5.sialah.common.CustomerData;
+import com.rep5.sialah.common.models.PlaneChatPacket;
 import com.rep5.sialah.common.models.SiaMessage;
 import com.rep5.sialah.common.models.StewardReceipt;
 import com.rep5.sialah.common.models.StewardReply;
@@ -22,12 +23,24 @@ public class Messages {
     private static final Logger logger = LoggerFactory.getLogger(Messages.class);
 
     @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("plane_chat")
+    public Response planeChat(PlaneChatPacket packet) {
+        PlaneChat.handlePacket(packet);
+        return Response.accepted().build();
+    }
+
+    @POST
     @Consumes(MediaType.TEXT_PLAIN)
     @Path("fcm_id")
     public Response postId(String token) {
         logger.info("Received session token: " + token);
-        Handler.sendFirstMessage();
-        CustomerData.setFirebaseToken(token);
+        if (token.startsWith("JX-")) {
+            CustomerData.setFirebaseToken(token.substring(3));
+        }
+        else {
+            CustomerData.setFriendToken(token);
+        }
         return Response.ok().build();
     }
 

@@ -19,6 +19,13 @@ import javax.ws.rs.core.Response;
 public class Signals {
 
     @GET
+    @Path("start")
+    public  Response sendInit() {
+        Handler.sendFirstMessage();
+        return Response.accepted().build();
+    }
+
+    @GET
     @Path("baggage")
     public Response getQueue() {
         Handler.sendBaggage();
