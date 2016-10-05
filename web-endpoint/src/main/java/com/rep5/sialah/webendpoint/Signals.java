@@ -80,7 +80,7 @@ public class Signals {
     @POST
     @Path("cus_service")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response talkToCus(ChatBotMessage convo) {
+    public Response talkToCus(ChatBotMessage[] convo) {
         Handler.handleService(convo);
         ContextCache.talkToCus();
         return Response.accepted().build();

@@ -1,7 +1,9 @@
 package com.rep5.sialah.webendpoint;
 
 import com.rep5.sialah.common.ContextCache;
+import com.rep5.sialah.common.ConvoStore;
 import com.rep5.sialah.common.CustomerData;
+import com.rep5.sialah.common.MessageStore;
 import com.rep5.sialah.common.models.*;
 import com.rep5.sialah.convo.ConvoImpl;
 import com.rep5.sialah.pushnotif.FCMImpl;
@@ -20,7 +22,7 @@ public class Handler {
         logger.info("received message: " + msg);
 
         if (ContextCache.isTalkToCus()) {
-            //TODO send to customer service
+            MessageStore.setMessage(msg);
             return;
         }
 
@@ -79,10 +81,8 @@ public class Handler {
 
     }
 
-    //TODO to handle messages to be sent to customer service
-    public static void handleService(ChatBotMessage convo) {
-
-
+    public static void handleService(ChatBotMessage[] convo) {
+        ConvoStore.setMessages(convo);
     }
 
     public static void sendBaggage() {

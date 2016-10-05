@@ -1,7 +1,9 @@
 package com.rep5.sialah.webendpoint;
 
 import com.rep5.sialah.common.ContextCache;
+import com.rep5.sialah.common.ConvoStore;
 import com.rep5.sialah.common.CustomerData;
+import com.rep5.sialah.common.MessageStore;
 import com.rep5.sialah.common.models.PlaneChatPacket;
 import com.rep5.sialah.common.models.SiaMessage;
 import com.rep5.sialah.common.models.StewardReceipt;
@@ -58,12 +60,33 @@ public class Messages {
         return Response.ok().build();
     }
 
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("service_init")
+    public Response serviceInit() {
+        if (ContextCache.isTalkToCus()) {
+            return Response.ok(ConvoStore.getMessages(), MediaType.APPLICATION_JSON).header("Access-Control-Allow-Origin", "*").build();
+        }
+        return Response.noContent().build();
+    }
+
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    @Path("service")
+    public Response cusReceipt() {
+        String reply = MessageStore.getAndClear();
+        if (reply != null) {
+            return Response.ok(reply, MediaType.APPLICATION_JSON).header("Access-Control-Allow-Origin", "*").build();
+        }
+        return Response.noContent().build();
+    }
+
     @POST
     @Consumes(MediaType.TEXT_PLAIN)
     @Path("service")
     public Response cusReply(String reply) {
         Handler.handleServiceReply(reply);
-        return Response.accepted().build();
+        return Response.accepted().header("Access-Control-Allow-Origin", "*").build();
     }
 
     @GET

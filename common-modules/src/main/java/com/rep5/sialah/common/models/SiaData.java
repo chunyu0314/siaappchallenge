@@ -28,6 +28,7 @@ public class SiaData {
 
     //to be set by jx
 //    private boolean talkingToCustomerService;
+    private Boolean needsCustomerService;
 
     private Boolean planeChat;
 
@@ -36,6 +37,14 @@ public class SiaData {
     private boolean inFlight;
 
     public SiaData() {
+    }
+
+    public Boolean getNeedsCustomerService() {
+        return needsCustomerService;
+    }
+
+    public void setNeedsCustomerService(Boolean needsCustomerService) {
+        this.needsCustomerService = needsCustomerService;
     }
 
     public Boolean getConfirmingCheckIn() {
