@@ -61,6 +61,7 @@ public class ContextCache {
         siaData.setInFlight(false);
         siaData.setFakeBooking(false);
         siaData.setPlaneChat(false);
+        siaData.setConfirmingCheckIn(false);
 
         context = new Context();
         context.setSiaData(siaData);

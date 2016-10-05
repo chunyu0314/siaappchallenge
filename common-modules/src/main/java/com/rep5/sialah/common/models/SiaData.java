@@ -31,10 +31,19 @@ public class SiaData {
 
     private Boolean planeChat;
 
+    private Boolean confirmingCheckIn;
     //for watson use
     private boolean inFlight;
 
     public SiaData() {
+    }
+
+    public Boolean getConfirmingCheckIn() {
+        return confirmingCheckIn;
+    }
+
+    public void setConfirmingCheckIn(Boolean confirmingCheckIn) {
+        this.confirmingCheckIn = confirmingCheckIn;
     }
 
     public Boolean getPlaneChat() {

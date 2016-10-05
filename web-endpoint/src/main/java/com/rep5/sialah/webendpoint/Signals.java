@@ -48,6 +48,14 @@ public class Signals {
     }
 
     @GET
+    @Path("check_in")
+    public Response askForCheckIn() {
+        Handler.askForCheckIn();
+        ContextCache.getContext().getSiaData().setConfirmingCheckIn(true);
+        return Response.accepted().build();
+    }
+
+    @GET
     @Path("one_day_before")
     public Response oneDayBefore() {
         Handler.sendCheckin();

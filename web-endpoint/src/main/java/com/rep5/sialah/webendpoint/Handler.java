@@ -30,6 +30,8 @@ public class Handler {
 
         message.setContext(ContextCache.getContextAndReset());
         SiaMessage watsonReply = ConvoImpl.useConvo(message);
+        //clear confirmingCheckIn flag
+        ContextCache.getContext().getSiaData().setConfirmingCheckIn(false);
         if (watsonReply.getContext().getSiaData().getCustomerRequestType() != null) {
             StewardReceipt msgToSteward = new StewardReceipt();
             msgToSteward.setId(ContextCache.getNewId());
@@ -50,11 +52,11 @@ public class Handler {
         }
 
         else if (status.matches(Constants.POSTPONED)) {
-            response = "Sorry, our air stewardess are unable to attend tou you right now. We will be notifying you again when your request is ready.";
+            response = "Sorry, our air stewardess are unable to attend to you right now. We will be notifying you again when your request is ready.";
         }
 
         else if (status.matches(Constants.REJECTED)) {
-            response = "Sorry, " + item + " are no longer available, would you like to make another request?";
+            response = "Sorry, " + item + " is no longer available, would you like to make another request?";
         }
         doPush(response);
 
@@ -85,11 +87,11 @@ public class Handler {
     }
 
     public static void sendBaggage() {
-        doPush("Your baggage have been loaded onto the plane");
+        doPush("Hi there, glad to inform you that your baggage have been loaded onto the plane");
     }
 
     public static void sendCheckin() {
-        doPush("Your check in counter will be at blah blah blah");
+        doPush("Hope you are ready for your flight tonight! Your check in counter will be at Terminal 3 counter 10. It's recommended to check in by 6pm to avoid missing the flight.");
     }
 
     public static void boardedPlane() {
@@ -125,5 +127,9 @@ public class Handler {
 
     public static void sendFirstMessage() {
         doPush("Hi, I am SIA, Sia Intelligent Assistant. You can ask me anything!");
+    }
+
+    public static void askForCheckIn() {
+        doPush("A reminder that your flight is in 2 days time. Would you like to do an online check in now?");
     }
 }
