@@ -20,12 +20,6 @@ public class SiaData {
     private String customerRequestType;
     private String customerRequestItem;
 
-    //stores previous convo for customer service, jx to set this value
-    //store from earliest to latest
-    //clear after 1st contact to reduce payload
-    //prepend each string with source of msg, use "usr-Whatever message" and "bot-Whatever message"
-//    private String[] pastFiveConvo;
-
     //to be set by jx
 //    private boolean talkingToCustomerService;
     private Boolean needsCustomerService;
@@ -86,39 +80,7 @@ public class SiaData {
     public void setFakeBooking(boolean fakeBooking) {
         this.fakeBooking = fakeBooking;
     }
-/*
-    public String getSeatNumber() {
-        return seatNumber;
-    }
 
-    public void setSeatNumber(String seatNumber) {
-        this.seatNumber = seatNumber;
-    }
-
-    public String getCustomerRequestType() {
-        return customerRequestType;
-    }
-
-    public void setCustomerRequestType(String customerRequestType) {
-        this.customerRequestType = customerRequestType;
-    }
-
-    public String[] getPastFiveConvo() {
-        return pastFiveConvo;
-    }
-
-    public void setPastFiveConvo(String[] pastFiveConvo) {
-        this.pastFiveConvo = pastFiveConvo;
-    }
-
-    public boolean getTalkingToCustomerService() {
-        return talkingToCustomerService;
-    }
-
-    public void setTalkingToCustomerService(boolean talkingToCustomerService) {
-        this.talkingToCustomerService = talkingToCustomerService;
-    }
-*/
     public boolean getInFlight() {
         return inFlight;
     }
