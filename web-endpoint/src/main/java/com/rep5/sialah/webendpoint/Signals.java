@@ -81,6 +81,10 @@ public class Signals {
     @Path("cus_service")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response talkToCus(ChatBotMessage[] convo) {
+        if (ContextCache.isTalkToCus()) {
+            ContextCache.stopTalkToCus();
+            return Response.ok().build();
+        }
         Handler.handleService(convo);
         ContextCache.talkToCus();
         return Response.accepted().build();
