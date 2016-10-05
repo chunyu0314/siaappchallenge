@@ -1,7 +1,7 @@
 package com.rep5.sialah.webendpoint;
 
 import com.rep5.sialah.common.ContextCache;
-import com.rep5.sialah.common.models.StoreConvo;
+import com.rep5.sialah.common.models.ChatBotMessage;
 import com.rep5.sialah.pushnotif.SendToSteward;
 
 import javax.ws.rs.Consumes;
@@ -80,7 +80,7 @@ public class Signals {
     @POST
     @Path("cus_service")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response talkToCus(StoreConvo convo) {
+    public Response talkToCus(ChatBotMessage convo) {
         Handler.handleService(convo);
         ContextCache.talkToCus();
         return Response.accepted().build();

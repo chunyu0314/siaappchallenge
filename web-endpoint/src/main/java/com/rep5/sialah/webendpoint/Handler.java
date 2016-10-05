@@ -3,7 +3,6 @@ package com.rep5.sialah.webendpoint;
 import com.rep5.sialah.common.ContextCache;
 import com.rep5.sialah.common.CustomerData;
 import com.rep5.sialah.common.models.*;
-import com.rep5.sialah.common.models.fcm.FcmPacket;
 import com.rep5.sialah.convo.ConvoImpl;
 import com.rep5.sialah.pushnotif.FCMImpl;
 import com.rep5.sialah.pushnotif.SendToSteward;
@@ -81,7 +80,7 @@ public class Handler {
     }
 
     //TODO to handle messages to be sent to customer service
-    public static void handleService(StoreConvo convo) {
+    public static void handleService(ChatBotMessage convo) {
 
 
     }
