@@ -21,7 +21,7 @@ public class Handler {
     public static void handleText(String msg) {
         logger.info("received message: " + msg);
 
-        ContextCache.getContext().getSiaData().setNeedsCustomerService(false);
+        //ContextCache.getContext().getSiaData().setNeedsCustomerService(false);
 
         if (ContextCache.isTalkToCus()) {
             MessageStore.setMessage(msg);
@@ -44,6 +44,7 @@ public class Handler {
             SendToSteward.send(msgToSteward);
         }
         FCMImpl.pushSiaMessage(watsonReply);
+        ContextCache.getContext().getSiaData().setNeedsCustomerService(false);
 
     }
 
