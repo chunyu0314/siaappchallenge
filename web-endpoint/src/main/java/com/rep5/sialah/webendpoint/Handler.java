@@ -145,4 +145,10 @@ public class Handler {
     public static void askForCheckIn() {
         doPush("A reminder that your flight is in 2 days time. Would you like to do an online check in now?");
     }
+
+    public static void sendNews() {
+        doPush("Hi Jie Xun! Don’t forget that you have booked a flight to San Francisco on 5th December. " +
+                "Remember to pack your bags! Also, do note that SIA does not allow users of the latest Samsung Galaxy Note 7 " +
+                "to bring their phones on-board our planes. Thank you!");
+    }
 }

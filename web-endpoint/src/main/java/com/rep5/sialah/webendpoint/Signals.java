@@ -77,6 +77,13 @@ public class Signals {
         return Response.accepted().build();
     }
 
+    @GET
+    @Path("news")
+    public Response news() {
+        Handler.sendNews();
+        return Response.accepted().build();
+    }
+
     @POST
     @Path("cus_service")
     @Consumes(MediaType.APPLICATION_JSON)
