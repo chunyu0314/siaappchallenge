@@ -63,6 +63,7 @@ public class ContextCache {
         siaData.setPlaneChat(false);
         siaData.setConfirmingCheckIn(false);
         siaData.setNeedsCustomerService(false);
+        siaData.setIsCusService(false);
 
         context = new Context();
         context.setSiaData(siaData);

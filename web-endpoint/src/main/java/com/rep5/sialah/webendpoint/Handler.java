@@ -79,7 +79,9 @@ public class Handler {
             logger.error("Customer service talking while state is not set");
             return;
         }
+        ContextCache.getContext().getSiaData().setIsCusService(true);
         doPush(reply);
+        ContextCache.getContext().getSiaData().setIsCusService(false);
 
     }
 

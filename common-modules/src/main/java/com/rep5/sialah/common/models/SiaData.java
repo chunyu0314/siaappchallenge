@@ -23,6 +23,7 @@ public class SiaData {
     //to be set by jx
 //    private boolean talkingToCustomerService;
     private Boolean needsCustomerService;
+    private Boolean isCusService;
 
     private Boolean planeChat;
 
@@ -31,6 +32,14 @@ public class SiaData {
     private boolean inFlight;
 
     public SiaData() {
+    }
+
+    public Boolean getIsCusService() {
+        return isCusService;
+    }
+
+    public void setIsCusService(Boolean cusService) {
+        isCusService = cusService;
     }
 
     public Boolean getNeedsCustomerService() {
