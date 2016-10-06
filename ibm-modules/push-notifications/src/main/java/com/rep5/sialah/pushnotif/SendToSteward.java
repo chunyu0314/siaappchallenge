@@ -18,7 +18,7 @@ public class SendToSteward {
     public static void fakeSend() {
         StewardReceipt msg = new StewardReceipt();
         msg.setId(ContextCache.getNewId());
-        msg.setRequestItem("Show me some red wine");
+        msg.setRequestItem("F1 beary ambassador");
         msg.setRequestType(Constants.STEWARD_REQUEST_SHOP);
         msg.setSeatNumber("22H");
 
