@@ -21,6 +21,8 @@ public class Handler {
     public static void handleText(String msg) {
         logger.info("received message: " + msg);
 
+        ContextCache.getContext().getSiaData().setNeedsCustomerService(false);
+
         if (ContextCache.isTalkToCus()) {
             MessageStore.setMessage(msg);
             return;

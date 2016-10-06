@@ -94,6 +94,6 @@ public class Signals {
     @Path("cus_service")
     public Response stopTalkToCus() {
         ContextCache.stopTalkToCus();
-        return Response.accepted().build();
+        return Response.accepted().header("Access-Control-Allow-Origin", "*").build();
     }
 }

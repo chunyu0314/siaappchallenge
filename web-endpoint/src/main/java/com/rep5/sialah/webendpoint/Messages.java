@@ -7,7 +7,7 @@ import com.rep5.sialah.common.MessageStore;
 import com.rep5.sialah.common.models.PlaneChatPacket;
 import com.rep5.sialah.common.models.SiaMessage;
 import com.rep5.sialah.common.models.StewardReceipt;
-import com.rep5.sialah.common.models.StewardReply;
+import com.rep5.sialah.externalapi.BoardingPass;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -47,10 +47,10 @@ public class Messages {
     }
 
     @GET
-    @Produces(MediaType.APPLICATION_OCTET_STREAM)
+    @Produces(MediaType.APPLICATION_JSON)
     @Path("boarding_pass")
     public Response getBoardingPass() {
-        return Response.ok().build();
+        return Response.ok(BoardingPass.getBoardingPass(), MediaType.APPLICATION_JSON).build();
     }
 
     @POST
