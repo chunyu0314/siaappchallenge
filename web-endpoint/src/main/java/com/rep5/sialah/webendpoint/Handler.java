@@ -88,46 +88,56 @@ public class Handler {
     }
 
     public static void sendBaggage() {
-        doPush("Hi there, glad to inform you that your baggage have been loaded onto the plane");
+        doPush("Hi there, glad to inform you that your baggage has been loaded onto the plane!");
     }
 
     public static void sendCheckin() {
-        doPush("Hope you are ready for your flight tonight! Your check in counter will be at Terminal 3 counter 10. It's recommended to check in by 6pm to avoid missing the flight.");
+        doPush("Hope you are ready for your flight tonight! Your check in counter will be at Terminal 3 counter 10." +
+                " It's recommended to check in your luggage by 6pm to avoid missing the flight.");
     }
 
     public static void boardedPlane() {
-        doPush("Hi, welcome on board, please connect to the on board wifi to continue using me!");
+        doPush("Hi, welcome on board SQ32, please connect to SQ32_WIFI to continue talking to me!");
     }
 
     public static void sendSchedule() {
-        doPush("This time off lights, this time get hot towel, blah blah");
+        doPush("The plane is about to take off in 10 minutes. Hope you will find the following flight schedule useful!\n" +
+                "------\n" +
+                "8:10pm: Take off\n" +
+                "8:40pm: KrisFlyer shop open\n" +
+                "9:00pm: Dinner\n" +
+                "11pm - 6am: Lights off\n" +
+                "6:10am: Serving hot towels\n" +
+                "8am: Breakfast\n" +
+                "------\n" +
+        "*all times shown in SGT (GMT +8)");
     }
 
     public static void reachedDestination() {
-        doPush("Welcome to San Francisco");
+        doPush("Welcome to San Francisco! Weather here is sunny. Temperature right now is 16 degrees celsius. Do bring along a light jacket.");
         try {
-            Thread.sleep(300);
+            Thread.sleep(400);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        doPush("Weather is good!!");
+        doPush("After clearing the immigration, you may proceed towards the left of the arrival hall " +
+                "for the telecomm counters where you can purchase your sim card.");
         try {
-            Thread.sleep(300);
+            Thread.sleep(400);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        doPush("you can get your sim card here");
-        try {
-            Thread.sleep(300);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        doPush("at the mean time connect to #SFO_FREE_WIFI");
+        doPush("At the mean time you may connect to #SFO_FREE_WIFI for uninterrupted connectivity.");
+    }
+
+    public static void siaIsBack() {
+        doPush("Hi Jie Xun, Sia is back!");
     }
 
 
     public static void sendFirstMessage() {
-        doPush("Hi, I am SIA, Sia Intelligent Assistant. You can ask me anything!");
+        doPush("Hello, my name is Sia! I'm here to answer any queries you might have with regards to Singapore Airlines " +
+                "and guide you through your journey with our company. How may I help you?");
     }
 
     public static void askForCheckIn() {

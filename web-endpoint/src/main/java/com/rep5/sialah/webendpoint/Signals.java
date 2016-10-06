@@ -83,6 +83,7 @@ public class Signals {
     public Response talkToCus(ChatBotMessage[] convo) {
         if (ContextCache.isTalkToCus()) {
             ContextCache.stopTalkToCus();
+            Handler.siaIsBack();
             return Response.ok().build();
         }
         Handler.handleService(convo);
@@ -94,6 +95,7 @@ public class Signals {
     @Path("cus_service")
     public Response stopTalkToCus() {
         ContextCache.stopTalkToCus();
+        Handler.siaIsBack();
         return Response.accepted().header("Access-Control-Allow-Origin", "*").build();
     }
 }
