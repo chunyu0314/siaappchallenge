@@ -119,14 +119,14 @@ public class Handler {
     public static void reachedDestination() {
         doPush("Welcome to San Francisco! Weather here is sunny. Temperature right now is 16 degrees celsius. Do bring along a light jacket.");
         try {
-            Thread.sleep(400);
+            Thread.sleep(1200);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         doPush("After clearing the immigration, you may proceed towards the left of the arrival hall " +
                 "for the telecomm counters where you can purchase your sim card.");
         try {
-            Thread.sleep(400);
+            Thread.sleep(1200);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

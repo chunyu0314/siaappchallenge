@@ -3,6 +3,8 @@ package com.rep5.sialah.webendpoint;
 import com.rep5.sialah.common.ContextCache;
 import com.rep5.sialah.common.models.ChatBotMessage;
 import com.rep5.sialah.pushnotif.SendToSteward;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -17,6 +19,8 @@ import javax.ws.rs.core.Response;
 
 @Path("signals")
 public class Signals {
+
+    private static final Logger logger = LoggerFactory.getLogger(Signals.class);
 
     @GET
     @Path("start")
@@ -88,11 +92,16 @@ public class Signals {
     @Path("cus_service")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response talkToCus(ChatBotMessage[] convo) {
+/*
         if (ContextCache.isTalkToCus()) {
+            logger.info("Received post notif from android app to stop talking to customer service");
             ContextCache.stopTalkToCus();
             Handler.siaIsBack();
             return Response.ok().build();
         }
+        */
+
+        logger.info("talking to customer service now");
         Handler.handleService(convo);
         ContextCache.talkToCus();
         return Response.accepted().build();
@@ -101,6 +110,11 @@ public class Signals {
     @GET
     @Path("cus_service")
     public Response stopTalkToCus() {
+        if (!ContextCache.isTalkToCus()) {
+            logger.info("stupid jia rui try to spam the stop button");
+            return Response.notModified().header("Access-Control-Allow-Origin", "*").build();
+        }
+        logger.info("received stop signal from jia rui to stop customer service");
         ContextCache.stopTalkToCus();
         Handler.siaIsBack();
         return Response.accepted().header("Access-Control-Allow-Origin", "*").build();
